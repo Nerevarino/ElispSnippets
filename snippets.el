@@ -1,10 +1,11 @@
 (progn
 (defvar mysnip-offset-power 2)
+  
 
 
 
 (defun mysnip-add-offset-to-strings(offset strings)
-  (setq strings
+  (if (not (equal strings nil))
     (cons (car strings)  
       (mapcar
 	(lambda (str)
@@ -13,7 +14,8 @@
 	(cdr strings)
       ) 
     )
-  )  
+    nil
+  )
 )
 
 
@@ -53,16 +55,15 @@
     
     (setq strings
       (list
-        "(let*\n"
-        (concat (make-string (* mysnip-offset-power 2) space) "(\n")
-	(concat (make-string (* mysnip-offset-power 3) space) "\n")
-	(concat (make-string (* mysnip-offset-power 2) space) ")\n")
-	(concat (make-string mysnip-offset-power space) "\n")
-	(concat (make-string mysnip-offset-power space) "\n")
+	"(let*\n"
+	(concat (make-string (* mysnip-offset-power 2) ?\ ) "(\n")
+	(concat (make-string (* mysnip-offset-power 3) ?\ ) "\n")
+	(concat (make-string (* mysnip-offset-power 2) ?\ ) ")\n")
+	(concat (make-string mysnip-offset-power ?\ ) "\n")
+	(concat (make-string mysnip-offset-power ?\ ) "\n")
 	")"
       )
     )
-
     (setq strings (mysnip-add-offset-to-strings base-offset strings))
     (setq snippet-string (mysnip-make-snippet-string-from-strings strings))
     (mysnip-print-snippet-and-move-point snippet-string point-start-pos 3)
@@ -91,11 +92,10 @@
     )
     (setq strings
       (list
-        (concat "(" name " )\n")
-        ""
-      )
-    )
-    
+	(concat "(" name " )\n")
+	""
+      )    
+    )    
     (setq strings (mysnip-add-offset-to-strings base-offset strings))
     (setq snippet-string (mysnip-make-snippet-string-from-strings strings))
     (mysnip-print-snippet-and-move-point snippet-string point-start-pos 1)
@@ -400,4 +400,7 @@
 
 )
 
+   
+      
                          
+     

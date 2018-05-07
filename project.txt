@@ -1,0 +1,30 @@
+функция mysnip-read-dynamic-snippet:
+  принимает на вход имя создаваемого динамического сниппета
+  считывает текст сниппета и преобразует его в список списков, Каждый элемент этого списка - список фрагментов текста одной строки сниппета,
+  деление на фрагменты происходит из-за возмжного наличия аргументов для подстановки
+
+выходная переменная - snippet-lines
+чтение текста сниппета мы делаем построчно - формируем snippet-line из current-line-fragment,
+который в свою очередь формируется как substring от region-text от fragment-begin до fragment-end
+
+snippet-lines
+snippet-line
+current-line-fragment
+region-text
+fragment-begin
+fragment-end
+mark-char
+nextline-char
+
+
+
+mysnip-print-dynamic-snippet:
+
+печать сниппета в место с текущей точки
+
+1)print
+2)snippet
+3)point
+
+print: функции princ, хотя сначала получение output-text и уже потом печать его
+
